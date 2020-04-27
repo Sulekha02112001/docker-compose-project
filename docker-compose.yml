@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mysqlos:
+    image: mysql:5.7
+    volumes:
+      - mystorage:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: gudiya
+      MYSQL_PASSWORD: 1@Sulekha
+      MYSQL_DATABASE: sqldb
+       
+  joomlaos:
+    image: joomla:latest
+    volumes:
+      - jostorage:/var/www/html
+    restart: always
+    depends_on:
+      - mysqlos
+    ports:
+      - 8081:80
+    environment:
+      JOOMLA_DB_HOST: mysqlos
+      JOOMLA_DB_USER: gudiya
+      JOOMLA_DB_PASSWORD: 1@Sulekha
+      JOOMLA_DB_NAME: sqldb
+volumes:
+  mystorage:
+  jostorage:
+
