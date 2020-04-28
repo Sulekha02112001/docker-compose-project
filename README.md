@@ -1,1 +1,1 @@
-# docker-compose-project
+# joomla-docker-compose
